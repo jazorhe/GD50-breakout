@@ -21,6 +21,10 @@ function love.load()
         ['particle'] = love.graphics.newImage('graphics/particle.png')
     }
 
+    gFrames = {
+        ['paddles'] = GenerateQuadsPaddles(gTextures['main'])
+    }
+
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         vsync = true,
         fullscreen = false,
@@ -31,7 +35,7 @@ function love.load()
         ['paddle-hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
         ['score'] = love.audio.newSource('sounds/score.wav', 'static'),
         ['wall-hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static'),
-        ['comfirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
+        ['confirm'] = love.audio.newSource('sounds/confirm.wav', 'static'),
         ['select'] = love.audio.newSource('sounds/select.wav', 'static'),
         ['no-select'] = love.audio.newSource('sounds/no-select.wav', 'static'),
         ['brick-hit-1'] = love.audio.newSource('sounds/brick-hit-1.wav', 'static'),
@@ -46,7 +50,8 @@ function love.load()
     }
 
     gStateMachine = StateMachine {
-        ['start'] = function() return StartState() end
+        ['start'] = function() return StartState() end,
+        ['play'] = function() return PlayState() end
     }
     gStateMachine:change('start')
 
