@@ -1,11 +1,19 @@
 StartState = Class {__includes = BaseState}
 
-local hignlighted = 1
+local highlighted = 1
 
 function StartState:update(dt)
 
-    if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then hignlighted = hignlighted == 1 and 2 or 1
+    if love.keyboard.wasPressed('up') or love.keyboard.wasPressed('down') then highlighted = highlighted == 1 and 2 or 1
         gSounds['paddle-hit']:play()
+    end
+
+    if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+        gSounds['confirm']:play()
+
+        if highlighted == 1 then
+            gStateMachine:change('play')
+        end
     end
 
     if love.keyboard.wasPressed('escape') then
@@ -21,13 +29,13 @@ function StartState:render()
 
     love.graphics.setFont(gFonts['medium'])
 
-    if hignlighted == 1 then
+    if highlighted == 1 then
         love.graphics.setColor(0.4, 1, 1, 1)
     end
     love.graphics.printf("START", 0 , VIRTUAL_HEIGHT / 2 + 70, VIRTUAL_WIDTH, 'center')
     love.graphics.setColor(255, 255, 255, 255)
 
-    if hignlighted == 2 then
+    if highlighted == 2 then
         love.graphics.setColor(0.4, 1, 1, 1)
     end
     love.graphics.printf("HIGH SCORES", 0, VIRTUAL_HEIGHT / 2 + 90, VIRTUAL_WIDTH, 'center')
