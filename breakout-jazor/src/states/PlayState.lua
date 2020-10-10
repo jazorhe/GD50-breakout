@@ -16,22 +16,16 @@
 
 PlayState = Class{__includes = BaseState}
 
-function PlayState:init()
-    self.paddle = Paddle()
-
-    -- initialize ball with skin #1; different skins = different sprites
-    self.ball = Ball(1)
+function PlayState:enter(params)
+    self.paddle = params.paddle
+    self.bricks = params.bricks
+    self.health = params.health
+    self.score = params.score
+    self.ball = params.ball
 
     -- give ball random starting velocity
     self.ball.dx = math.random(-200, 200)
     self.ball.dy = math.random(-50, -60)
-
-    -- give ball position in the center
-    self.ball.x = VIRTUAL_WIDTH / 2 - 4
-    self.ball.y = VIRTUAL_HEIGHT - 42
-
-    -- use the "static" createMap function to generate a bricks table
-    self.bricks = LevelMaker.createMap()
 end
 
 function PlayState:update(dt)
