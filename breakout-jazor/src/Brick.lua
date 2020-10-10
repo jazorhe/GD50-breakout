@@ -4,33 +4,33 @@ Brick = Class{}
 paletteColors = {
     -- blue
     [1] = {
-        ['r'] = 99,
-        ['g'] = 155,
-        ['b'] = 255
+        ['r'] = 99 / 255,
+        ['g'] = 155 / 255,
+        ['b'] = 255 / 255
     },
     -- green
     [2] = {
-        ['r'] = 106,
-        ['g'] = 190,
-        ['b'] = 47
+        ['r'] = 106 / 255,
+        ['g'] = 190 / 255,
+        ['b'] = 47 / 255
     },
     -- red
     [3] = {
-        ['r'] = 217,
-        ['g'] = 87,
-        ['b'] = 99
+        ['r'] = 217 / 255,
+        ['g'] = 87 / 255,
+        ['b'] = 99 / 255
     },
     -- purple
     [4] = {
-        ['r'] = 215,
-        ['g'] = 123,
-        ['b'] = 186
+        ['r'] = 215 / 255,
+        ['g'] = 123 / 255,
+        ['b'] = 186 / 255
     },
     -- gold
     [5] = {
-        ['r'] = 251,
-        ['g'] = 242,
-        ['b'] = 54
+        ['r'] = 251 / 255,
+        ['g'] = 242 / 255,
+        ['b'] = 54 / 255
     }
 }
 
@@ -77,14 +77,14 @@ function Brick:hit()
         paletteColors[self.color].r,
         paletteColors[self.color].g,
         paletteColors[self.color].b,
-        55 * (self.tier + 1),
+        55 / 255 * (self.tier + 1),
         paletteColors[self.color].r,
         paletteColors[self.color].g,
         paletteColors[self.color].b,
         0
     )
     self.psystem:emit(64)
-    
+
     -- sound on hit
     gSounds['brick-hit-2']:stop()
     gSounds['brick-hit-2']:play()
@@ -115,6 +115,10 @@ function Brick:hit()
 
 end
 
+function Brick:update(dt)
+    self.psystem:update(dt)
+end
+
 function Brick:render()
     if self.inPlay then
         love.graphics.draw(gTextures['main'],
@@ -123,4 +127,8 @@ function Brick:render()
             gFrames['bricks'][1 + ((self.color - 1) * 4) + self.tier],
             self.x, self.y)
     end
+end
+
+function Brick:renderParticles()
+    love.graphics.draw(self.psystem, self.x + 16, self.y + 8)
 end
