@@ -5,7 +5,7 @@
 # Developing and Learning Notes:
 
 -   ## breakout0
-    -   StartState
+    -   StartState.lua
     -   Dependencies.lua
     -   constants.lua
     -   Folder Structure
@@ -112,12 +112,14 @@ Paddle Collision:
 
 
 -   ## breakout5: The Hearts Update
-    -   
+    -   Passing Parameters when entering different States
+    -   ServeState.lua
+    -   renderHealth(health)
+    -   renderScore(score)
 
 
 # Up Next
 -   Procedural Layouts
--   Managing State
 -   Levels
 -   Player Health
 -   Particle Systems
