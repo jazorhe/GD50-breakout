@@ -8,7 +8,7 @@
     cogden@cs50.harvard.edu
 
     Represents the state that the game is in when we've just completed a level.
-    Very similar to the ServeState, except here we increment the level 
+    Very similar to the ServeState, except here we increment the level
 ]]
 
 VictoryState = Class{__includes = BaseState}
@@ -35,7 +35,8 @@ function VictoryState:update(dt)
             bricks = LevelMaker.createMap(self.level + 1),
             paddle = self.paddle,
             health = self.health,
-            score = self.score
+            score = self.score,
+            highScores = self.highScores
         })
     end
 end
