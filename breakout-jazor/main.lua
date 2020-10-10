@@ -66,6 +66,11 @@ function love.load()
     gStateMachine:change('start', {
         highScores = loadHighScores()
     })
+
+    -- play our music outside of all states and set it to looping
+    gSounds['music']:play()
+    gSounds['music']:setLooping(true)
+
     love.keyboard.keysPressed = {}
 
 end
