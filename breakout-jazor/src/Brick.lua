@@ -1,20 +1,38 @@
---[[
-    GD50
-    Breakout Remake
-
-    -- Brick Class --
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-
-    Represents a brick in the world space that the ball can collide with;
-    differently colored bricks have different point values. On collision,
-    the ball will bounce away depending on the angle of collision. When all
-    bricks are cleared in the current map, the player should be taken to a new
-    layout of bricks.
-]]
-
 Brick = Class{}
+
+-- some of the colors in our palette (to be used with particle systems)
+paletteColors = {
+    -- blue
+    [1] = {
+        ['r'] = 99,
+        ['g'] = 155,
+        ['b'] = 255
+    },
+    -- green
+    [2] = {
+        ['r'] = 106,
+        ['g'] = 190,
+        ['b'] = 47
+    },
+    -- red
+    [3] = {
+        ['r'] = 217,
+        ['g'] = 87,
+        ['b'] = 99
+    },
+    -- purple
+    [4] = {
+        ['r'] = 215,
+        ['g'] = 123,
+        ['b'] = 186
+    },
+    -- gold
+    [5] = {
+        ['r'] = 251,
+        ['g'] = 242,
+        ['b'] = 54
+    }
+}
 
 function Brick:init(x, y)
     -- used for coloring and score calculation
