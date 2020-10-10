@@ -137,6 +137,11 @@ Color Patterns and Skipping:
 
 -   ## breakout8: The Particle Update
     -   https://love2d.org/wiki/ParticleSystem
+    -   Colour Pallete
+    -   Init Particle System
+    -   self.psystem:emit(n) when Brick:hit()
+    -   self.psystem:update(dt) in Brick:update(dt)
+    -   Brick:renderParticles()
 
 
 # Up Next
