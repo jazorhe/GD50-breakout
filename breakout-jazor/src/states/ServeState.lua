@@ -26,8 +26,7 @@ function ServeState:enter(params)
     self.level = params.level
 
     -- init new ball (random color for fun)
-    self.ball = Ball()
-    self.ball.skin = math.random(7)
+    self.ball = Ball(self.paddle.skin)
 end
 
 function ServeState:update(dt)

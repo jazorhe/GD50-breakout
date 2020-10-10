@@ -164,6 +164,16 @@ Particle Smoke Effect:
     -   Choose Name Update
 
 
+-   ## breakout12: The Paddle Select Update
+    -   PaddleSelectState.lua
+    -   Pass in skin value when initializing Paddle
+
+
+Paddle Seleciton:
+
+<img src="/img/breakout12.png" width="70%">
+
+
 
 File System Functions:
 
