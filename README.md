@@ -1,66 +1,77 @@
 # GD50-breakout
--- Enter Description Here...
 
-## Developing and Learning Notes:
-* breakout0
-    * StartState
-    * Dependencies.lua
-    * constants.lua
-    * Folder Structure
+\-- Enter Description Here...
 
-* breakout1: The Sprite Sheet Update
-    * Sprite Sheets (Util.lua)
-    * Use of sprite sheet for various sizes quads:
-    * StartState
+# Developing and Learning Notes:
 
-    <img src="/img/quad-with-different-sizes.png" width="70%">
+-   ## breakout0
+    -   StartState
+    -   Dependencies.lua
+    -   constants.lua
+    -   Folder Structure
 
-```
-function GenerateQuadsPaddles(atlas)
-    local x = 0
-    local y = 64
 
-    local counter = 1
-    local quads = {}
+-   ## breakout1: The Sprite Sheet Update
+    -   Sprite Sheets (Util.lua)
+    -   Use of sprite sheet for various sizes quads:
 
-    for i = 0, 3 do
-        -- smallest
-        quads[counter] = love.graphics.newQuad(x, y, 32, 16,
-            atlas:getDimensions())
-        counter = counter + 1
-        -- medium
-        quads[counter] = love.graphics.newQuad(x + 32, y, 64, 16,
-            atlas:getDimensions())
-        counter = counter + 1
-        -- large
-        quads[counter] = love.graphics.newQuad(x + 96, y, 96, 16,
-            atlas:getDimensions())
-        counter = counter + 1
-        -- huge
-        quads[counter] = love.graphics.newQuad(x, y + 16, 128, 16,
-            atlas:getDimensions())
-        counter = counter + 1
+Quads
 
-        -- prepare X and Y for the next set of paddles
-        x = 0
-        y = y + 32
-    end
+<img src="/img/quad-with-different-sizes.png" width="70%">
 
-    return quads
-end
-```
+        function GenerateQuadsPaddles(atlas)
+            local x = 0
+            local y = 64
 
-* breakout2: The Bounce Update
-    *
+            local counter = 1
+            local quads = {}
 
-* breakout3: The Brick Update
-    *
+            for i = 0, 3 do
+                -- smallest
+                quads[counter] = love.graphics.newQuad(x, y, 32, 16,
+                    atlas:getDimensions())
+                counter = counter + 1
+                -- medium
+                quads[counter] = love.graphics.newQuad(x + 32, y, 64, 16,
+                    atlas:getDimensions())
+                counter = counter + 1
+                -- large
+                quads[counter] = love.graphics.newQuad(x + 96, y, 96, 16,
+                    atlas:getDimensions())
+                counter = counter + 1
+                -- huge
+                quads[counter] = love.graphics.newQuad(x, y + 16, 128, 16,
+                    atlas:getDimensions())
+                counter = counter + 1
 
-## Up Next
-* Procedural Layouts
-* Managing State
-* Levels
-* Player Health
-* Particle Systems
-* Collision Detection Revisited
-* Persistent Save Data
+                -- prepare X and Y for the next set of paddles
+                x = 0
+                y = y + 32
+            end
+
+            return quads
+        end
+
+-   ## breakout2: The Bounce Update
+    -   Ball.lua
+    -   Added GenerateQuadsBalls to Util.lua
+    -   Used AABB to check ball collision with Paddle
+    -   Added Collision with walls
+
+
+-   ## breakout3: The Brick Update
+    -   Brick.lua
+    -   Added GenerateQuadsBricks to Util.lua
+    -   LevelMaker.lua
+    -   Check Ball collides with Bricks and set "self.input" (good for small games)
+
+
+# Up Next
+
+-   Procedural Layouts
+-   Managing State
+-   Levels
+-   Player Health
+-   Particle Systems
+-   Collision Detection Revisited
+-   Persistent Save Data
