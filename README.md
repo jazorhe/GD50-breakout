@@ -149,13 +149,22 @@ Particle Smoke Effect:
 
 
 -   ## breakout9: The Progression Update
-    -   
+    -   Initial self.level in StartState.lua
+    -   Pass the level parameter into ServeState and PlayState
+    -   Pass the level parameter into VictoryState
+    -   VictoryState.lua handles increment of level
+    -   Pass the level parameter back to ServeState
+
+
+-   ## breakout10: The High Score Update
+    -   File System Functions
+
+
+File System Functions:
+
+<img src="/img/file-sys-functions.png" width="70%">
+
 
 
 # Up Next
--   Procedural Layouts
--   Levels
--   Player Health
--   Particle Systems
--   Collision Detection Revisited
 -   Persistent Save Data
