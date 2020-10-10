@@ -143,6 +143,14 @@ Color Patterns and Skipping:
     -   self.psystem:update(dt) in Brick:update(dt)
     -   Brick:renderParticles()
 
+Particle Smoke Effect:
+
+<img src="/img/breakout8.png" width="70%">
+
+
+-   ## breakout9: The Progression Update
+    -   
+
 
 # Up Next
 -   Procedural Layouts
