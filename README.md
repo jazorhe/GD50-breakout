@@ -119,6 +119,12 @@ Paddle Collision:
     -   GameOverState.lua
 
 
+-   ## breakout6: The Pretty Colors Update
+    -   Skip
+    -   Alternate
+    -   Lua's Continue
+
+
 # Up Next
 -   Procedural Layouts
 -   Levels
