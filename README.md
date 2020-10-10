@@ -72,6 +72,7 @@ Quads Division:
 
 
 Paddle Collision:
+
 <img src="/img/paddle-collision.png" width="70%">
 
 
@@ -125,8 +126,17 @@ Paddle Collision:
     -   Lua's Continue
 
 
+Color Patterns and Skipping:
+
+<img src="/img/breakout6.png" width="70%">
+
+
 -   ## breakout7: The Tier Update
-    -
+    -   Add tier and color switching logic in Brick.lua
+
+
+-   ## breakout8: The Particle Update
+    -   https://love2d.org/wiki/ParticleSystem
 
 
 # Up Next
