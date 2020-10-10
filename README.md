@@ -15,7 +15,7 @@
     -   Sprite Sheets (Util.lua)
     -   Use of sprite sheet for various sizes quads:
 
-Quads
+Quads Division:
 
 <img src="/img/quad-with-different-sizes.png" width="70%">
 
@@ -64,6 +64,51 @@ Quads
     -   Added GenerateQuadsBricks to Util.lua
     -   LevelMaker.lua
     -   Check Ball collides with Bricks and set "self.input" (good for small games)
+
+
+-   ## breakout4: The Collision Update
+    -   Tweak Paddle Bounce dx if moving in same direction
+    -   Check which edge of Brick does the Ball collide with
+
+
+Paddle Collision:
+<img src="/img/paddle-collision.png" width="70%">
+
+
+        -- left edge; only check if we're moving right
+        if self.ball.x + 2 < brick.x and self.ball.dx > 0 then
+
+            -- flip x velocity and reset position outside of brick
+            self.ball.dx = -self.ball.dx
+            self.ball.x = brick.x - 8
+
+        -- right edge; only check if we're moving left
+        elseif self.ball.x + 6 > brick.x + brick.width and self.ball.dx < 0 then
+
+            -- flip x velocity and reset position outside of brick
+            self.ball.dx = -self.ball.dx
+            self.ball.x = brick.x + 32
+
+        -- top edge if no X collisions, always check
+        elseif self.ball.y < brick.y then
+
+            -- flip y velocity and reset position outside of brick
+            self.ball.dy = -self.ball.dy
+            self.ball.y = brick.y - 8
+
+        -- bottom edge if no X collisions or top collision, last possibility
+        else
+
+            -- flip y velocity and reset position outside of brick
+            self.ball.dy = -self.ball.dy
+            self.ball.y = brick.y + 16
+        end
+
+        -- slightly scale the y velocity to speed up the game
+        self.ball.dy = self.ball.dy * 1.02
+
+        -- only allow colliding with one brick, for corners
+        break
 
 
 # Up Next
