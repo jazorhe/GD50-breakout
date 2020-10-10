@@ -116,6 +116,7 @@ Paddle Collision:
     -   ServeState.lua
     -   renderHealth(health)
     -   renderScore(score)
+    -   GameOverState.lua
 
 
 # Up Next
