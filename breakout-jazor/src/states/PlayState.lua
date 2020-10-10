@@ -24,8 +24,8 @@ function PlayState:enter(params)
     self.ball = params.ball
 
     -- give ball random starting velocity
-    self.ball.dx = math.random(-200, 200)
-    self.ball.dy = math.random(-100)
+    self.ball.dx = math.random(-150, 150)
+    self.ball.dy = math.random(-200)
 end
 
 function PlayState:update(dt)
@@ -74,7 +74,7 @@ function PlayState:update(dt)
         if brick.inPlay and self.ball:collides(brick) then
 
             -- add to score
-            self.score = self.score + 10
+            self.score = self.score + (brick.tier * 200 + brick.color * 25)
 
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
@@ -158,6 +158,9 @@ function PlayState:render()
 
     self.paddle:render()
     self.ball:render()
+
+    renderScore(self.score)
+    renderHealth(self.health)
 
     -- pause text, if paused
     if self.paused then
