@@ -112,7 +112,7 @@ function loadHighScores()
     love.filesystem.setIdentity('breakout')
 
     -- if the file doesn't exist, initialize it with some default scores
-    if not love.filesystem.exists('breakout.lst') then
+    if not love.filesystem.getInfo('breakout.lst') then
         local scores = ''
         for i = 10, 1, -1 do
             scores = scores .. 'JHE\n'
