@@ -2,8 +2,7 @@
 
 \-- Enter Description Here...
 
-# Developing and Learning Notes:
-
+# Developing & Learning Notes:
 -   ## breakout0
     -   StartState.lua
     -   Dependencies.lua
@@ -160,6 +159,11 @@ Particle Smoke Effect:
     -   File System Functions
 
 
+File System Functions:
+
+<img src="/img/file-sys-functions.png" width="70%">
+
+
 -   ## breakout11: The Enter High Score Update
     -   Choose Name Update
 
@@ -174,12 +178,21 @@ Paddle Seleciton:
 <img src="/img/breakout12.png" width="70%">
 
 
+# Assignment 2
+-   ## Objectives
+    -   Read and understand all of the Breakout source code from Lecture 2.
+    -   Add a powerup to the game that spawns two extra Balls.
+    -   Grow and shrink the Paddle when the player gains enough points or loses a life.
+    -   Add a locked Brick that will only open when the player collects a second new powerup, a key, which should only spawn when such a Brick exists and randomly as per the Ball powerup.
 
-File System Functions:
 
-<img src="/img/file-sys-functions.png" width="70%">
+-   ## Extra Ball Powerup Update
+    -   To Be Completed...
 
 
+-   ## Paddle Size Update
+    -   To Be Completed...
 
-# Up Next
--   Persistent Save Data
+
+-   ## Key Powerup Update
+    -   To Be Completed...
