@@ -91,7 +91,7 @@ function PlayState:update(dt)
                     ball = self.ball
                 })
             end
-            
+
             --
             -- collision code for bricks
             --
