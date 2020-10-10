@@ -73,6 +73,9 @@ function PlayState:update(dt)
         -- only check collision if we're in play
         if brick.inPlay and self.ball:collides(brick) then
 
+            -- add to score
+            self.score = self.score + 10
+
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
 
