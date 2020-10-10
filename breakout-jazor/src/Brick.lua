@@ -46,6 +46,23 @@ function Brick:init(x, y)
 
     -- used to determine whether this brick should be rendered
     self.inPlay = true
+
+    -- particle system belonging to the brick, emitted on hit
+    self.psystem = love.graphics.newParticleSystem(gTextures['particle'], 64)
+
+    -- various behavior-determining functions for the particle system
+    -- https://love2d.org/wiki/ParticleSystem
+
+    -- lasts between 0.5-1 seconds seconds
+    self.psystem:setParticleLifetime(0.5, 1)
+
+    -- give it an acceleration of anywhere between X1,Y1 and X2,Y2 (0, 0) and (80, 80) here
+    -- gives generally downward
+    self.psystem:setLinearAcceleration(-15, 0, 15, 80)
+
+    -- spread of particles; normal looks more natural than uniform, which is clumpy; numbers
+    -- are amount of standard deviation away in X and Y axis
+    self.psystem:setAreaSpread('normal', 10, 10)
 end
 
 --[[
