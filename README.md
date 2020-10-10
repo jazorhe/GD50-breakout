@@ -8,16 +8,12 @@
     * constants.lua
     * Folder Structure
 
-* breakout1
+* breakout1: The Sprite Sheet Update
     * Sprite Sheets (Util.lua)
     * Use of sprite sheet for various sizes quads:
-
-    <img src="/img/quad-with-different-sizes.png" width="70%">
-
-* breakout2
     * StartState
 
-* breakout3
+    <img src="/img/quad-with-different-sizes.png" width="70%">
 
 ```
 function GenerateQuadsPaddles(atlas)
@@ -53,6 +49,12 @@ function GenerateQuadsPaddles(atlas)
     return quads
 end
 ```
+
+* breakout2: The Bounce Update
+    *
+
+* breakout3: The Brick Update
+    *
 
 ## Up Next
 * Procedural Layouts
