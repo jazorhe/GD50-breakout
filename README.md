@@ -1,7 +1,7 @@
 # GD50-breakout
+-- Enter Description Here...
 
-## Overview:
-
+## Developing and Learning Notes:
 * breakout0
     * StartState
     * Dependencies.lua
@@ -11,7 +11,13 @@
 * breakout1
     * Sprite Sheets (Util.lua)
     * Use of sprite sheet for various sizes quads:
-    ![Quads with Different Sizes](/img/quad-with-different-sizes.png)
+
+    <img src="/img/quad-with-different-sizes.png" width="70%">
+
+* breakout2
+    * StartState
+
+* breakout3
 
 ```
 function GenerateQuadsPaddles(atlas)
