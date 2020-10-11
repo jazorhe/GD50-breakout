@@ -203,6 +203,8 @@ Paddle Seleciton:
 
 
 -   ## Key Powerup Update
+    -   Add Key brick, force at top center
+    -   Add Key variable in Brick.lua, when key brick is generated, its key val is set to true
     -   To Be Completed...
 
 

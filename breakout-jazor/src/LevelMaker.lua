@@ -58,12 +58,24 @@ function LevelMaker.createMap(level)
         local solidTier = math.random(0, highestTier)
 
         for x = 1, numCols do
+
+            if y == 1 and x == math.ceil(numCols / 2) then
+                b = Brick(
+                    (x-1) * 32 + 8 + (13 - numCols) * 16,
+                    y * 16
+                )
+                b.tier = 1
+                b.color = 6
+                b.key = true
+                table.insert(bricks, b)
+                skipFlag = not skipFlag
+                goto continue
+            end
+
             -- if skipping is turned on and we're on a skip iteration...
             if skipPattern and skipFlag then
                 -- turn skipping off for the next iteration
                 skipFlag = not skipFlag
-
-                -- Lua doesn't have a continue statement, so this is the workaround
                 goto continue
             else
                 -- flip the flag to true on an iteration we don't use it

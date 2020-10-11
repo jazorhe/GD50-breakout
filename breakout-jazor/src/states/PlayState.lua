@@ -9,11 +9,21 @@ function PlayState:enter(params)
     self.balls = {params.ball}
     self.level = params.level
     self.powers = params.powers
+    self.bricksLeft = #self.bricks
 
     -- give ball random starting velocity
     self.balls[1].dx = math.random(-150, 150)
     self.balls[1].dy = math.random(-200)
     self.balls[1].served = true
+
+    self.keysNeeded = 0
+    for k, brick in pairs(self.bricks) do
+        if brick.key then
+            self.keysNeeded = self.keysNeeded + 1
+        end
+    end
+    self.keyBlocks = {}
+    keyCount = 0
 end
 
 function PlayState:update(dt)
@@ -95,8 +105,12 @@ function PlayState:update(dt)
                 -- add to score
                 self.score = self.score + (brick.tier * 200 + brick.color * 25)
 
-                -- trigger the brick's hit function, which removes it from play
-                brick:hit()
+
+                if not brick.key then
+                    -- trigger the brick's hit function, which removes it from play
+                    brick:hit()
+                end
+
                 if not brick.inPlay then
                     self:spawnPowerup(brick.x + brick.width / 2, brick.y)
                 end
@@ -183,11 +197,6 @@ function PlayState:update(dt)
         end
     end
 
-    -- for rendering particle systems
-    for k, brick in pairs(self.bricks) do
-        brick:update(dt)
-    end
-
     -- for rendering powerups
     for k, power in pairs(self.powers) do
         power:update(dt)
@@ -195,14 +204,39 @@ function PlayState:update(dt)
         -- check powerup blocks collides with padddle
         if power.inPlay and power:collides(self.paddle) then
             gSounds['select']:play()
-            self.balls[#self.balls + 1] = Ball(self.paddle.skin)
-            self.balls[#self.balls + 1] = Ball(self.paddle.skin)
-            power:collect({
-                ['paddle'] = self.paddle
-            })
+            power:collect()
+            if power.type == 'ball' then
+                self.balls[#self.balls + 1] = Ball(self.paddle.skin)
+                self.balls[#self.balls + 1] = Ball(self.paddle.skin)
+            elseif power.type == 'key' then
+                keyCount = keyCount + 1
+            end
         end
 
     end
+
+    -- for rendering particle systems
+    for k, brick in pairs(self.bricks) do
+        brick:update(dt)
+        if brick.key then
+            table.insert(self.keyBlocks, brick)
+        end
+
+        self.bricksLeft = 0
+        if brick.inPlay then
+            self.bricksLeft = self.bricksLeft + 1
+        end
+    end
+
+    if self.keysNeeded > 0 and keyCount > 0 then
+        local index = math.random(#self.keyBlocks)
+        self.keyBlocks[index]:hit()
+        self.keyBlocks[index].key = false
+        self.keyBlocks[index].inPlay = false
+        self.keysNeeded = self.keysNeeded - 1
+        keyCount = keyCount - 1
+    end
+    self.keyBlocks = {}
 
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -251,8 +285,15 @@ function PlayState:checkVictory()
 end
 
 function PlayState:spawnPowerup(x, y)
-    if true then
+
+    if math.random(1,3) == 1 then
         p = Powerup('ball', {
+            ['x'] = x,
+            ['y'] = y
+        })
+        table.insert(self.powers, p)
+    elseif self.keysNeeded > 0 and (math.random(1,5) == 1 or self.bricksLeft < 5) then
+        p = Powerup('key', {
             ['x'] = x,
             ['y'] = y
         })
