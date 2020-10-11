@@ -205,7 +205,8 @@ Paddle Seleciton:
 -   ## Key Powerup Update
     -   Add Key brick, force at top center
     -   Add Key variable in Brick.lua, when key brick is generated, its key val is set to true
-    -   To Be Completed...
+    -   Track key bricks in PlayState.lua and spawn key powerup if there are key bricks
+    -   When key powerup is collected, randomly select a keybrick and remove from play
 
 
 ##  Helpful Links:
