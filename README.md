@@ -180,14 +180,16 @@ Paddle Seleciton:
 
 # Assignment 2
 -   ## Objectives
-    -   Read and understand all of the Breakout source code from Lecture 2.
-    -   Add a powerup to the game that spawns two extra Balls.
-    -   Grow and shrink the Paddle when the player gains enough points or loses a life.
-    -   Add a locked Brick that will only open when the player collects a second new powerup, a key, which should only spawn when such a Brick exists and randomly as per the Ball powerup.
+    -   [x] Read and understand all of the Breakout source code from Lecture 2.
+    -   [ ] Add a powerup to the game that spawns two extra Balls.
+    -   [ ] Grow and shrink the Paddle when the player gains enough points or loses a life.
+    -   [ ] Add a locked Brick that will only open when the player collects a second new powerup, a key, which should only spawn when such a Brick exists and randomly as per the Ball powerup.
 
 
 -   ## Extra Ball Powerup Update
-    -   To Be Completed...
+    -   Add Powers Sprite (Util.lua)
+    -   Whenever a brick breaks, there is a chance it drops the Ball Powerup (Brick.lua)
+    -   Powerup.lua
 
 
 -   ## Paddle Size Update
@@ -196,3 +198,7 @@ Paddle Seleciton:
 
 -   ## Key Powerup Update
     -   To Be Completed...
+
+
+##  Helpful Links:
+    -   Makrdown Language: https://guides.github.com/features/mastering-markdown/
