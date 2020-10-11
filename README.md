@@ -209,5 +209,9 @@ Paddle Seleciton:
     -   When key powerup is collected, randomly select a keybrick and remove from play
 
 
+Final Submission:
+[![Submission Youtube Video](http://img.youtube.com/vi/daa_yeFr0_g/0.jpg)](http://www.youtube.com/watch?v=daa_yeFr0_g "Submission Video")
+
+
 ##  Helpful Links:
     -   Makrdown Language: https://guides.github.com/features/mastering-markdown/
