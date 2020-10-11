@@ -1,18 +1,3 @@
---[[
-    GD50
-    Breakout Remake
-
-    -- Ball Class --
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-
-    Represents a ball which will bounce back and forth between the sides
-    of the world space, the player's paddle, and the bricks laid out above
-    the paddle. The ball can have a skin, which is chosen at random, just
-    for visual variety.
-]]
-
 Ball = Class{}
 
 function Ball:init(skin)
@@ -45,7 +30,7 @@ function Ball:collides(target)
     -- edge of the other
     if self.y > target.y + target.height or target.y > self.y + self.height then
         return false
-    end 
+    end
 
     -- if the above aren't true, they're overlapping
     return true

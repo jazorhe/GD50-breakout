@@ -1,8 +1,17 @@
 Powerup = Class{}
 
+powerFrames = {
+    ['ball'] = 9
+}
+
+powerEffects = {
+    ['ball'] = function() return Powerup:ballPower() end
+}
+
 function Powerup:init(type, x, y)
     self.type = type
-    self.power = gPowers[type]
+    self.frame = powerFrames[self.type]
+    self.power = powerEffects[self.type]
 
     self.x = x
     self.y = y
@@ -15,12 +24,12 @@ end
 
 
 function Powerup:update(dt)
-
+    self.y = self.y + 2
 end
 
 
 function Powerup:render()
-
+    love.graphics.draw(gTextures['main'], gFrames['powers'][self.frame], self.x - self.width / 2, self.y)
 end
 
 
