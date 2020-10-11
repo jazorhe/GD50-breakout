@@ -1,9 +1,5 @@
 Paddle = Class{}
 
---[[
-    Our Paddle will initialize at the same spot every time, in the middle
-    of the world horizontally, toward the bottom.
-]]
 function Paddle:init(skin, size)
 
     self.dx = 0
@@ -19,7 +15,7 @@ function Paddle:init(skin, size)
         self.width = 128
     end
     self.height = 16
-    
+
     self.x = VIRTUAL_WIDTH / 2 - self.width / 2
     self.y = VIRTUAL_HEIGHT - 32
 
@@ -35,16 +31,8 @@ function Paddle:update(dt)
         self.dx = 0
     end
 
-    -- math.max here ensures that we're the greater of 0 or the player's
-    -- current calculated Y position when pressing up so that we don't
-    -- go into the negatives; the movement calculation is simply our
-    -- previously-defined paddle speed scaled by dt
     if self.dx < 0 then
         self.x = math.max(0, self.x + self.dx * dt)
-    -- similar to before, this time we use math.min to ensure we don't
-    -- go any farther than the bottom of the screen minus the paddle's
-    -- height (or else it will go partially below, since position is
-    -- based on its top left corner)
     else
         self.x = math.min(VIRTUAL_WIDTH - self.width, self.x + self.dx * dt)
     end
@@ -57,4 +45,19 @@ end
 function Paddle:render()
     love.graphics.draw(gTextures['main'], gFrames['paddles'][self.size + 4 * (self.skin - 1)],
         self.x, self.y)
+end
+
+
+function Paddle:resize(size)
+    self.size = size
+    if self.size == 1 then
+        self.width = 32
+    elseif self.size == 2 then
+        self.width = 64
+    elseif self.size == 3 then
+        self.width = 96
+    else
+        self.width = 128
+    end
+    self.height = 16
 end

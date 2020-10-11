@@ -31,17 +31,18 @@ function PlayState:update(dt)
         return
     end
 
-    -- quick reset for testing purposes
-    if love.keyboard.wasPressed('r') then
-        gStateMachine:change('serve', {
-            paddle = self.paddle,
-            bricks = self.bricks,
-            health = 3,
-            score = self.score,
-            highScores = self.highScores,
-            level = self.level,
-            powers = self.powers
-        })
+    if TEST_MODE then
+        if love.keyboard.wasPressed('r') then
+            gStateMachine:change('serve', {
+                paddle = self.paddle,
+                bricks = self.bricks,
+                health = 3,
+                score = self.score,
+                highScores = self.highScores,
+                level = self.level,
+                powers = self.powers
+            })
+        end
     end
 
     -- update positions based on velocity
