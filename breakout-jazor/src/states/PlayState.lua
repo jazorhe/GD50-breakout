@@ -45,7 +45,7 @@ function PlayState:update(dt)
 
     -- update positions based on velocity
     self.paddle:update(dt)
-    self.allBallsDied = false
+
     for k, ball in pairs(self.balls) do
         ball:update(dt)
 
@@ -148,7 +148,8 @@ function PlayState:update(dt)
         -- if ball goes below bounds, revert to serve state and decrease health
         if ball.y >= VIRTUAL_HEIGHT then
             gSounds['hurt']:play()
-            if #balls == 1 then
+            table.remove(self.balls, k)
+            if #self.balls == 0 then
                 self.health = self.health - 1
                 if self.health == 0 then
                     gStateMachine:change('game-over', {
