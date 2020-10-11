@@ -20,6 +20,25 @@ function ServeState:update(dt)
     self.ball.x = self.paddle.x + (self.paddle.width / 2) - 4
     self.ball.y = self.paddle.y - 10
 
+    if TEST_MODE then
+        if love.keyboard.wasPressed(']') then
+            self.score = self.score + 1000
+        elseif love.keyboard.wasPressed('[')then
+            self.score = self.score - 1000
+        end
+
+        if love.keyboard.wasPressed('1') then
+            self.paddle:resize(1)
+        elseif love.keyboard.wasPressed('2') then
+            self.paddle:resize(2)
+        elseif love.keyboard.wasPressed('3') then
+            self.paddle:resize(3)
+        elseif love.keyboard.wasPressed('4') then
+            self.paddle:resize(4)
+        end
+
+    end
+
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         -- pass in all important state info to the PlayState
         gStateMachine:change('play', {
