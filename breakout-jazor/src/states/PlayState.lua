@@ -13,6 +13,7 @@ function PlayState:enter(params)
     -- give ball random starting velocity
     self.balls[1].dx = math.random(-150, 150)
     self.balls[1].dy = math.random(-200)
+    self.balls[1].served = true
 end
 
 function PlayState:update(dt)
@@ -46,8 +47,21 @@ function PlayState:update(dt)
     -- update positions based on velocity
     self.paddle:update(dt)
 
+    -- update all balls
     for k, ball in pairs(self.balls) do
-        ball:update(dt)
+
+        if ball.served == false then
+            ball.x = self.paddle.x + (self.paddle.width / 2) - 4
+            ball.y = self.paddle.y - 10
+            if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
+                ball.dx = math.random(-150, 150)
+                ball.dy = math.random(-200)
+                ball.served = true
+            end
+
+        else
+            ball:update(dt)
+        end
 
         -- detect ball collision with paddle
         if ball:collides(self.paddle) then
@@ -171,8 +185,6 @@ function PlayState:update(dt)
         end
     end
 
-
-
     -- for rendering particle systems
     for k, brick in pairs(self.bricks) do
         brick:update(dt)
@@ -185,6 +197,7 @@ function PlayState:update(dt)
         -- check powerup blocks collides with padddle
         if power.inPlay and power:collides(self.paddle) then
             gSounds['select']:play()
+            self.balls[#self.balls + 1] = Ball(self.paddle.skin)
             power:collect({
                 ['paddle'] = self.paddle
             })
@@ -238,13 +251,11 @@ function PlayState:checkVictory()
     return true
 end
 
--- TODO:this can probably live somehwere else (split: table insertion in above Playstate:update(dt) and initialization in Powerup:init())
 function PlayState:spawnPowerup(x, y)
-    if false then
+    if true then
         p = Powerup('ball', {
             ['x'] = x,
-            ['y'] = y,
-            ['skin'] = self.paddle.skin
+            ['y'] = y
         })
         table.insert(self.powers, p)
     end
