@@ -198,6 +198,7 @@ function PlayState:update(dt)
         if power.inPlay and power:collides(self.paddle) then
             gSounds['select']:play()
             self.balls[#self.balls + 1] = Ball(self.paddle.skin)
+            self.balls[#self.balls + 1] = Ball(self.paddle.skin)
             power:collect({
                 ['paddle'] = self.paddle
             })
