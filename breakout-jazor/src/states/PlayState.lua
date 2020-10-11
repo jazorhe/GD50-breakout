@@ -51,6 +51,7 @@ function PlayState:update(dt)
     -- update all balls
     for k, ball in pairs(self.balls) do
 
+        -- attach unserved balls to paddle
         if ball.served == false then
             ball.x = self.paddle.x + (self.paddle.width / 2) - 4
             ball.y = self.paddle.y - 10
@@ -59,7 +60,6 @@ function PlayState:update(dt)
                 ball.dy = math.random(-200)
                 ball.served = true
             end
-
         else
             ball:update(dt)
         end
@@ -115,15 +115,6 @@ function PlayState:update(dt)
                     })
                 end
 
-                --
-                -- collision code for bricks
-                --
-                -- we check to see if the opposite side of our velocity is outside of the brick;
-                -- if it is, we trigger a collision on that side. else we're within the X + width of
-                -- the brick and should check to see if the top or bottom edge is outside of the brick,
-                -- colliding on the top or bottom accordingly
-                --
-
                 -- left edge; only check if we're moving right
                 if ball.x + 2 < brick.x and ball.dx > 0 then
 
@@ -164,14 +155,20 @@ function PlayState:update(dt)
         if ball.y >= VIRTUAL_HEIGHT then
             gSounds['hurt']:play()
             table.remove(self.balls, k)
+
             if #self.balls == 0 then
                 self.health = self.health - 1
+
+                -- die or serve while making paddle larger
                 if self.health == 0 then
                     gStateMachine:change('game-over', {
                         score = self.score,
                         highScores = self.highScores
                     })
                 else
+                    local newSize = math.min(4, self.paddle.size + 1)
+                    self.paddle:resize(newSize)
+
                     gStateMachine:change('serve', {
                         paddle = self.paddle,
                         bricks = self.bricks,

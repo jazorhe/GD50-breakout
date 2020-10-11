@@ -12,6 +12,7 @@ function ServeState:enter(params)
 
     -- init new ball (random color for fun)
     self.ball = Ball(self.paddle.skin)
+    self.adjustPaddle = false
 end
 
 function ServeState:update(dt)
@@ -37,6 +38,11 @@ function ServeState:update(dt)
             self.paddle:resize(4)
         end
 
+    end
+
+    if self.level == 2 and not self.adjustPaddle then
+        self.paddle:resize(math.max(1, self.paddle.size - 1))
+        self.adjustPaddle = true
     end
 
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
