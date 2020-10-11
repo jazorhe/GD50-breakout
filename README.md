@@ -189,7 +189,10 @@ Paddle Seleciton:
 -   ## Extra Ball Powerup Update
     -   Add Powers Sprite (Util.lua)
     -   Whenever a brick breaks, there is a chance it drops the Ball Powerup (Brick.lua)
-    -   Powerup.lua
+    -   Powerup.lua: very basic, only in control for dropping powerup blocks and detech collidsion with paddle
+    -   Need to allow multiple balls in play in PlayState
+    -   Need to update and render all balls
+    -   Only when no balls are in play where the game switches state
 
 
 -   ## Paddle Size Update
