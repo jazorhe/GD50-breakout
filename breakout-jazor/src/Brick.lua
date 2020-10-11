@@ -31,6 +31,11 @@ paletteColors = {
         ['r'] = 251 / 255,
         ['g'] = 242 / 255,
         ['b'] = 54 / 255
+    },
+    [6] = {
+        ['r'] = 0.1,
+        ['g'] = 0.1,
+        ['b'] = 0.1
     }
 }
 
@@ -46,6 +51,7 @@ function Brick:init(x, y)
 
     -- used to determine whether this brick should be rendered
     self.inPlay = true
+    self.key = false
 
     -- particle system belonging to the brick, emitted on hit
     self.psystem = love.graphics.newParticleSystem(gTextures['particle'], 64)
@@ -70,9 +76,7 @@ end
     changing its color otherwise.
 ]]
 function Brick:hit()
-    -- set the particle system to interpolate between two colors; in this case, we give
-    -- it our self.color but with varying alpha; brighter for higher tiers, fading to 0
-    -- over the particle's lifetime (the second color)
+
     self.psystem:setColors(
         paletteColors[self.color].r,
         paletteColors[self.color].g,

@@ -1,31 +1,19 @@
 Powerup = Class{}
 
 powerFrames = {
-    ['ball'] = 9
+    ['ball'] = 9,
+    ['key'] = 10
 }
-
--- powerEffectInits = {
---     ['ball'] = function(power, params) return Powerup:ballPowerInit(power, params) end
--- }
---
--- powerEffectUpdates = {
---     ['ball'] = function(power, dt) return Powerup:ballPowerUpdate(power, dt) end
--- }
---
--- powerEffectRenders = {
---     ['ball'] = function(power) return Powerup:ballPowerRender(power) end
--- }
---
--- powerEffectDestorys = {
---     ['ball'] = function() return Powerup:ballPowerDestory() end
--- }
 
 function Powerup:init(type, params)
     self.type = type
     self.frame = powerFrames[self.type]
-    -- self.powerInit = powerEffectInits[self.type]
-    -- self.powerInEffect = powerEffectUpdates[self.type]
-    -- self.powerRender = powerEffectRenders[self.type]
+
+    self.powerEffect = {
+        ['ball'] = function() return Powerup:ballPower() end,
+        ['key'] = function() return Powerup:keyPower() end
+    }
+    self.powerEffect = self.powerEffect[self.type]
 
     self.x = params.x
     self.y = params.y
@@ -40,6 +28,7 @@ end
 function Powerup:update(dt)
     if self.inPlay then
         self.y = self.y + 2
+        gSounds['victory']:play()
     end
 
     if self.active then
@@ -71,23 +60,15 @@ function Powerup:collides(target)
     return true
 end
 
-function Powerup:collect(params)
+function Powerup:collect()
     self.inPlay = false
     self.active = true
 end
 
--- function Powerup:ballPowerInit(power, params)
---
--- end
---
--- function Powerup:ballPowerUpdate(power, dt)
---
--- end
---
--- function Powerup:ballPowerRender(power)
---
--- end
---
--- function Powerup:ballPowerDestory()
---
--- end
+function Powerup:ballPower()
+
+end
+
+function Powerup:keyPower()
+    keyCount = keyCount + 1
+end
