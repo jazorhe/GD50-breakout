@@ -29,6 +29,18 @@ function PlayState:update(dt)
         return
     end
 
+    if love.keyboard.wasPressed('r') then
+        gStateMachine:change('serve', {
+            paddle = self.paddle,
+            bricks = self.bricks,
+            health = 3,
+            score = self.score,
+            highScores = self.highScores,
+            level = self.level,
+            powers = self.powers
+        })
+    end
+
     -- update positions based on velocity
     self.paddle:update(dt)
     self.ball:update(dt)
@@ -146,7 +158,8 @@ function PlayState:update(dt)
                 health = self.health,
                 score = self.score,
                 highScores = self.highScores,
-                level = self.level
+                level = self.level,
+                powers = {}
             })
         end
     end
@@ -154,6 +167,10 @@ function PlayState:update(dt)
     -- for rendering particle systems
     for k, brick in pairs(self.bricks) do
         brick:update(dt)
+    end
+
+    for k, power in pairs(self.powers) do
+        power:update(dt)
     end
 
     if love.keyboard.wasPressed('escape') then
@@ -178,6 +195,10 @@ function PlayState:render()
     renderScore(self.score)
     renderHealth(self.health)
 
+    for k, power in pairs(self.powers) do
+        power:render()
+    end
+
     -- pause text, if paused
     if self.paused then
         love.graphics.setFont(gFonts['large'])
@@ -198,7 +219,7 @@ end
 
 function PlayState:spawnPowerup(x, y)
     if true then
-        p = Powerup('ball')
+        p = Powerup('ball', x, y)
         table.insert(self.powers, p)
     end
 end

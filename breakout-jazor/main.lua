@@ -68,10 +68,6 @@ function love.load()
         highScores = loadHighScores()
     })
 
-    gPowers = {
-        ['ball'] = function() return Powerup:ballPower() end
-    }
-
     -- play our music outside of all states and set it to looping
     gSounds['music']:play()
     gSounds['music']:setLooping(true)

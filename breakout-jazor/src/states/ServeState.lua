@@ -1,19 +1,3 @@
---[[
-    GD50
-    Breakout Remake
-
-    -- ServeState Class --
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-
-    The state in which we are waiting to serve the ball; here, we are
-    basically just moving the paddle left and right with the ball until we
-    press Enter, though everything in the actual game now should render in
-    preparation for the serve, including our current health and score, as
-    well as the level we're on.
-]]
-
 ServeState = Class{__includes = BaseState}
 
 function ServeState:enter(params)
