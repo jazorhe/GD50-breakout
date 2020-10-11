@@ -18,12 +18,13 @@ ServeState = Class{__includes = BaseState}
 
 function ServeState:enter(params)
     -- grab game state from params
-    self.paddle = params.paddle
-    self.bricks = params.bricks
-    self.health = params.health
-    self.score = params.score
+    self.paddle     = params.paddle
+    self.bricks     = params.bricks
+    self.health     = params.health
+    self.score      = params.score
     self.highScores = params.highScores
-    self.level = params.level
+    self.level      = params.level
+    self.powers     = params.powers
 
     -- init new ball (random color for fun)
     self.ball = Ball(self.paddle.skin)
@@ -38,13 +39,14 @@ function ServeState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         -- pass in all important state info to the PlayState
         gStateMachine:change('play', {
-            paddle = self.paddle,
-            bricks = self.bricks,
-            health = self.health,
-            score = self.score,
-            highScores = self.highScores,
-            ball = self.ball,
-            level = self.level
+            paddle      = self.paddle,
+            bricks      = self.bricks,
+            health      = self.health,
+            score       = self.score,
+            highScores  = self.highScores,
+            ball        = self.ball,
+            level       = self.level,
+            powers      = self.powers
         })
     end
 

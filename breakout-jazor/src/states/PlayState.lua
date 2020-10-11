@@ -1,19 +1,3 @@
---[[
-    GD50
-    Breakout Remake
-
-    -- PlayState Class --
-
-    Author: Colton Ogden
-    cogden@cs50.harvard.edu
-
-    Represents the state of the game in which we are actively playing;
-    player should control the paddle, with the ball actively bouncing between
-    the bricks, walls, and the paddle. If the ball goes below the paddle, then
-    the player should lose one point of health and be taken either to the Game
-    Over screen if at 0 health or the Serve screen otherwise.
-]]
-
 PlayState = Class{__includes = BaseState}
 
 function PlayState:enter(params)
@@ -24,6 +8,7 @@ function PlayState:enter(params)
     self.highScores = params.highScores
     self.ball = params.ball
     self.level = params.level
+    self.powers = params.powers
 
     -- give ball random starting velocity
     self.ball.dx = math.random(-150, 150)
@@ -80,6 +65,9 @@ function PlayState:update(dt)
 
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
+            if not brick.inPlay then
+                self:spawnPowerup(brick.x + brick.width / 2, brick.y)
+            end
 
             -- go to our victory screen if there are no more bricks left
             if self:checkVictory() then
@@ -206,4 +194,11 @@ function PlayState:checkVictory()
     end
 
     return true
+end
+
+function PlayState:spawnPowerup(x, y)
+    if true then
+        p = Powerup('ball')
+        table.insert(self.powers, p)
+    end
 end

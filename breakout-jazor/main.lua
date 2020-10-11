@@ -26,7 +26,8 @@ function love.load()
         ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
         ['balls'] = GenerateQuadsBalls(gTextures['main']),
         ['bricks'] = GenerateQuadsBricks(gTextures['main']),
-        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9)
+        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9),
+        ['powers'] = GenerateQuadsPowers(gTextures['main'], 16, 16)
     }
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
@@ -66,6 +67,10 @@ function love.load()
     gStateMachine:change('start', {
         highScores = loadHighScores()
     })
+
+    gPowers = {
+        ['ball'] = function() return Powerup:ballPower() end
+    }
 
     -- play our music outside of all states and set it to looping
     gSounds['music']:play()
